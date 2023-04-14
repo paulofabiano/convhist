@@ -1,0 +1,15 @@
+<% if comments.any? %>
+  <ul>
+    <% comments.each do |comment| %>
+      <li class="flex" id="<%= dom_id(comment) %>">
+        <div class="w-2/4"><%= comment.body %></div>
+        <div class="w-1/4"><%= comment.user.email %></div>
+        <div class="w-1/4 text-right">
+          <%= button_to "delete", project_comment_path(project, comment), data: { turbo_stream: true }, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div>No comments found.</div>
+<% end %>

@@ -1,0 +1,6 @@
+<%= turbo_stream.remove @comment %>
+<% unless @comments.any? %>
+  <%= turbo_stream.update "comments_list" do %>
+    <div>No comments found</div>
+  <% end %>
+<% end %>
