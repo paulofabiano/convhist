@@ -1,0 +1,18 @@
+<% if @projects.any? %>
+  <ul>
+    <% @projects.each do |project| %>
+      <li>
+        <div class="flex">
+          <div class="w-1/4"><%= link_to project.id, project_path(project.id), data: { turbo: false } %></div>
+          <div class="w-1/4"><%= link_to project.name, project_path(project.id), data: { turbo: false } %></div>
+          <div class="w-1/4"><%= project.status %></div>
+          <div class="w-1/4">
+            1,2,3
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  No project found.
+<% end %>

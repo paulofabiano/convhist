@@ -1,0 +1,23 @@
+<div class="flex-col xs:w-4/5 sm:w-3/4 md:w-3/4 lg:w-3/4 mx-auto xl:w-3/5 py-6">
+  <div class="flex flex-row mb-8 justify-between">
+    <h1><%= @project.name %></h1>
+
+    <div data-controller="statuses" data-statuses-project-value="<%= @project.id %>">
+      <%= select_tag :status, options_for_select(Project.statuses.map {|k, v| [k.humanize.capitalize, k]}, @project.status), data: { action: "change->statuses#change" } %>
+    </div>
+  </div>
+
+  <div class="mb-8">
+    <h2 class="text-xl">New comment</h2>
+    <%= turbo_frame_tag "new_comment" do %>
+      <%= render partial: "projects/comments/new", locals: { comments: @comments, model: [@project, @comment] } %>
+    <% end %>
+  </div>
+
+  <div class="mb-8">
+    <h3 class="text-xl">Comments</h3>
+    <%= turbo_frame_tag "comments_list" do %>
+      <%= render partial: "projects/comments/comments", locals: { comments: @comments, project: @project } %>
+    <% end %>
+  </div>
+</div>

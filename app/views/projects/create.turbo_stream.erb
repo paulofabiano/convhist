@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "projects_list" do %>
+  <%= turbo_frame_tag "projects_list" do %>
+    <%= render "projects", projects: @projects %>
+  <% end %>
+<% end %>

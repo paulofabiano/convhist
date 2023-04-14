@@ -1,0 +1,15 @@
+<div class="flex-col xs:w-4/5 sm:w-3/4 md:w-3/4 lg:w-3/4 mx-auto xl:w-3/5 py-6">
+  <div class="mb-8">
+    <h2 class="text-xl">Create new project</h2>
+    <%= turbo_frame_tag "new_project" do %>
+      <%= render partial: "projects/new", project: @project %>
+    <% end %>
+  </div>
+
+  <div class="mb-8">
+    <h2 class="text-xl">List of projects</h2>
+    <%= turbo_frame_tag "projects_list" do %>
+      <%= render partial: "projects/projects", projects: @projects %>
+    <% end %>
+  </div>
+</div>

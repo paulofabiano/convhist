@@ -1,0 +1,21 @@
+<%= form_with(model: @project, class: "w-full", data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset"}) do |form| %>
+  <% if @project.errors.any? %>
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+      <p class="font-bold">Be Warned</p>
+      <p><%= pluralize(@project.errors.count, "error") %> prohibited this member from being saved.</p>
+    </div>
+  <% end %>
+
+  <div class="flex gap-2">
+    <div class="flex flex-col w-2/4">
+      <%= form.text_field :name, placeholder: "Name of the project", class: "appearance-none block w-full bg-white text-sm text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none #{ "border-red-300" if form.object.errors[:name].present? }" %>
+      <% if form.object.errors[:name].present? %>
+        <p class="text-red-500 text-xs italic"><%= form.object.errors.full_messages_for(:name).first  %></p>
+      <% end %>
+    </div>
+
+    <div class="flex w-1/4 justify-start">
+      <%= form.submit class: "flex items-center bg-slate-800 text-sm text-white self-start px-4 py-[11px] rounded" %>
+    </div>
+  </div>
+<% end %>
